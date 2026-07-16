@@ -1,0 +1,15 @@
+{
+  "$comment": "Drop into .claude/settings.json in the repo where your sessions run. Every new session starts by printing the board.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash hooks/session-start.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

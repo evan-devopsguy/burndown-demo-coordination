@@ -1,0 +1,27 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        # Windows is in the matrix on purpose: the claim CLI's
+        # BEGIN IMMEDIATE design exists because of Windows file contention.
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Race demo (4-way + stress)
+        run: |
+          python demos/race.py --sessions 4
+          python demos/race.py --stress --sessions 6

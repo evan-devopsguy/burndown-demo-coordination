@@ -1,0 +1,9 @@
+# Local claim DB — rebuilt from the vault with `claimboard.py sync`
+.claims/
+
+__pycache__/
+*.pyc
+.DS_Store
+
+# Obsidian workspace state (keep the vault content, not the app state)
+vault/.obsidian/

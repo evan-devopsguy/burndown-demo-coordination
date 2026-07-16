@@ -1,0 +1,15 @@
+{
+  "start_date": "2026-06-10",
+  "days": 30,
+  "start_count": 8014,
+  "daily_drift": -24,
+  "jitter_seed": 42,
+  "jitter_range": [-14, 6],
+  "events": [
+    { "date": "2026-06-14", "delta": -642, "label": "decommission wave 1 lands" },
+    { "date": "2026-06-19", "delta": -418, "label": "base-image rebuild cliff" },
+    { "date": "2026-06-24", "delta": 431,  "label": "browser vendor discloses a new CVE batch — applies to every machine with the browser installed" },
+    { "date": "2026-06-28", "delta": -517, "label": "dependency pin wave merges" },
+    { "date": "2026-07-06", "delta": -389, "label": "decommission wave 2 lands" }
+  ]
+}
