@@ -30,6 +30,10 @@ from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 
+# Windows pipes default to cp1252, which can't encode the board's arrows.
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
 BUSY_TIMEOUT_MS = 10_000
 
 SCHEMA = """

@@ -27,6 +27,10 @@ import sys
 import tempfile
 from pathlib import Path
 
+# Windows pipes default to cp1252, which can't encode the result marks.
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
 REPO = Path(__file__).resolve().parent.parent
 CLAIMBOARD = REPO / "claimboard.py"
 

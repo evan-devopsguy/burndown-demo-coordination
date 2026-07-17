@@ -58,6 +58,9 @@ class ScannerAPI:
 
 
 if __name__ == "__main__":
+    import sys
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     for point in ScannerAPI().critical_count_series():
         flag = f"   <-- {'; '.join(point['events'])}" if point["events"] else ""
         print(f"{point['date']}  {point['count']:>6}{flag}")
