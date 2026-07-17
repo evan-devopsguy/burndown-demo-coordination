@@ -37,9 +37,11 @@ CLAIMBOARD = REPO / "claimboard.py"
 
 def run_cli(root: Path, *args: str) -> subprocess.CompletedProcess:
     env = {**os.environ, "CLAIMBOARD_ROOT": str(root)}
+    # encoding pinned: Windows would otherwise decode the pipe as cp1252
     return subprocess.run(
         [sys.executable, str(CLAIMBOARD), *args],
         env=env, capture_output=True, text=True,
+        encoding="utf-8", errors="replace",
     )
 
 

@@ -18,8 +18,10 @@ import claimboard  # noqa: E402
 
 def run_cli(root: Path, *args: str) -> subprocess.CompletedProcess:
     env = {**os.environ, "CLAIMBOARD_ROOT": str(root)}
+    # encoding pinned: Windows would otherwise decode the pipe as cp1252
     return subprocess.run([sys.executable, str(CLAIMBOARD), *args],
-                          env=env, capture_output=True, text=True)
+                          env=env, capture_output=True, text=True,
+                          encoding="utf-8", errors="replace")
 
 
 class ClaimboardTest(unittest.TestCase):
@@ -87,7 +89,8 @@ class ClaimboardTest(unittest.TestCase):
         procs = [subprocess.Popen(
             [sys.executable, str(CLAIMBOARD), "claim", "TASK-0005",
              "--session", f"s-{n}"],
-            env=env, stdout=subprocess.PIPE, text=True) for n in range(8)]
+            env=env, stdout=subprocess.PIPE, text=True,
+            encoding="utf-8", errors="replace") for n in range(8)]
         codes = []
         for p in procs:
             p.communicate()

@@ -53,7 +53,8 @@ class DashboardTest(unittest.TestCase):
     def render(self, *args: str) -> subprocess.CompletedProcess:
         env = {**os.environ, "CLAIMBOARD_ROOT": str(self.root)}
         return subprocess.run([sys.executable, str(UPDATE), *args],
-                              env=env, capture_output=True, text=True)
+                              env=env, capture_output=True, text=True,
+                              encoding="utf-8", errors="replace")
 
     def test_render_writes_chart_and_series(self):
         proc = self.render()
