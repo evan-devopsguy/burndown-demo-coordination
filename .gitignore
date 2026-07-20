@@ -7,3 +7,6 @@ __pycache__/
 
 # Obsidian workspace state (keep the vault content, not the app state)
 vault/.obsidian/
+
+# local Claude Code settings (never commit)
+.claude/
